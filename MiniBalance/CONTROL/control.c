@@ -255,7 +255,7 @@ void ReportEncoderBattery(void) {
   static u8 cnt = 0;
   static long voltage_temp = 0;
 
-  //USART2_ReportEncoder(Encoder_Left, Encoder_Right);
+  USART2_ReportEncoder(Encoder_Left, Encoder_Right);
   app_1_encL_report = Encoder_Left;
   app_2_encR_report = Encoder_Right;
   app_4_angle_report = Yaw;
@@ -264,7 +264,7 @@ void ReportEncoderBattery(void) {
   voltage_temp += Get_battery_volt();
   if (cnt == 200) {
     Voltage = voltage_temp / cnt;
-    //USART2_ReportBattery(Voltage);
+    USART2_ReportBattery(Voltage);
     cnt = 0;
     voltage_temp = 0;
   }

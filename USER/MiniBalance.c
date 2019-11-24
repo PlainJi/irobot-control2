@@ -32,7 +32,7 @@ int main(void) {
   MY_NVIC_PriorityGroupConfig(2);  //=====中断分组
   //=====初始化PWM 10KHZ，用于驱动电机 如需初始化电调接口
   MiniBalance_PWM_Init(7199, 0);
-  //uart2_init(9600);             //=====串口2初始化
+  uart2_init(230400);             //=====串口2初始化
   uart3_init(9600);               //=====串口3初始化
   Encoder_Init_TIM2();            //=====编码器接口
   Encoder_Init_TIM4();            //=====初始化编码器2
