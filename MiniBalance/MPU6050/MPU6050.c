@@ -253,32 +253,39 @@ void MPU6050_initialize(void) {
 **************************************************************************/
 void DMP_Init(void) {
   u8 temp[1] = {0};
+  u8 ret[5] = {0};
   i2cRead(0x68, 0x75, 1, temp);
-  //printf("mpu_set_sensor complete ......\r\n");
+  ret[0] = temp[0]/16+'0';
+  ret[1] = temp[0]%16+'0';
+  ret[2] = '\r';
+  ret[3] = '\n';
+  ret[4] = 0;
+  uart1_send("check mpu6050 ret: ");
+  uart1_send(ret);
   if (temp[0] != 0x68) {
     NVIC_SystemReset();
   }
   if (!mpu_init()) {
-    if (!mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL)) {}
-      //printf("mpu_set_sensor complete ......\r\n");
-    if (!mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL)) {}
-      //printf("mpu_configure_fifo complete ......\r\n");
-    if (!mpu_set_sample_rate(DEFAULT_MPU_HZ)) {}
-      //printf("mpu_set_sample_rate complete ......\r\n");
-    if (!dmp_load_motion_driver_firmware()) {}
-      //printf("dmp_load_motion_driver_firmware complete ......\r\n");
-    if (!dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_orientation))) {}
-      //printf("dmp_set_orientation complete ......\r\n");
+    if (!mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL))
+      uart1_send("mpu_set_sensor complete ......\r\n");
+    if (!mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL))
+      uart1_send("mpu_configure_fifo complete ......\r\n");
+    if (!mpu_set_sample_rate(DEFAULT_MPU_HZ))
+      uart1_send("mpu_set_sample_rate complete ......\r\n");
+    if (!dmp_load_motion_driver_firmware())
+      uart1_send("dmp_load_motion_driver_firmware complete ......\r\n");
+    if (!dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_orientation)))
+      uart1_send("dmp_set_orientation complete ......\r\n");
     if (!dmp_enable_feature(DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP |
                             DMP_FEATURE_ANDROID_ORIENT |
                             DMP_FEATURE_SEND_RAW_ACCEL |
-                            DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL)) {}
-      //printf("dmp_enable_feature complete ......\r\n");
-    if (!dmp_set_fifo_rate(DEFAULT_MPU_HZ)){}
-      //printf("dmp_set_fifo_rate complete ......\r\n");
+                            DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL))
+      uart1_send("dmp_enable_feature complete ......\r\n");
+    if (!dmp_set_fifo_rate(DEFAULT_MPU_HZ))
+      uart1_send("dmp_set_fifo_rate complete ......\r\n");
     run_self_test();
-    if (!mpu_set_dmp_state(1)) {}
-      //printf("mpu_set_dmp_state complete ......\r\n");
+    if (!mpu_set_dmp_state(1))
+      uart1_send("mpu_set_dmp_state complete ......\r\n");
   }
 }
 /**************************************************************************

@@ -4,9 +4,9 @@
 u16 led_freq=1;
 s32 DesireL = 0, DesireR = 0;
 s32 SpeedL = 50, SpeedR = 50;
-float Velocity_Kp = 5, Velocity_Ki = 0, Velocity_Kd = 0;
+float Velocity_Kp = 6.540, Velocity_Ki = 7.270, Velocity_Kd = 0;
 int Voltage;                      //电池电压采样相关的变量
-u8 Flag_Stop=0, report_flag=0, bluetooth_report=0, scope_report=0, save_flag=0, send_param_flag=0;  //停止标志位和 显示标志位 默认停止 显示打开
+u8 Flag_Stop=1, report_flag=0, bluetooth_report=0, scope_report=0, save_flag=0, send_param_flag=0;  //停止标志位和 显示标志位 默认停止 显示打开
 int app_1_encL_report = 0, app_2_encR_report = 0, app_3_vol_report = 0, app_4_angle_report = 0;
 u8 speed_limit = 130;   // 限速0.3m/s，轮子一圈1040个脉冲，轮直径0.238m，控制10Hz，0.3/0.238*1040/10=131
 
@@ -18,14 +18,13 @@ int Temperature;                  //显示温度
 float Angle_Balance=0, Gyro_Balance=0, Gyro_Turn=0;  //平衡倾角 平衡陀螺仪 转向陀螺仪
 float Show_Data_Mb;  //全局显示变量，用于显示需要查看的数据
 u32 Distance=0;        //超声波测距
-//u8 Bi_zhang = 0, PID_Send, Flash_Send;  //延时和调参等变量
 float Acceleration_Z;  // Z轴加速度计
 u16 PID_Parameter[10], Flash_Parameter[10];  // Flash相关数组
 
 int main(void) {
   delay_init();                //=====延时函数初始化
-  uart_init(128000);           //=====串口初始化为
-  uart1_send("uart1 ok\n");
+  uart_init(256000);           //=====串口初始化为
+  uart1_send("uart1 ok\r\n");
   JTAG_Set(JTAG_SWD_DISABLE);  //=====关闭JTAG接口
   JTAG_Set(SWD_ENABLE);  //=====打开SWD接口 可以利用主板的SWD接口调试
   LED_Init();            //=====初始化与 LED 连接的硬件接口

@@ -167,7 +167,7 @@ int velocity(int encoder_left, int encoder_right) {
 返回  值：无
 **************************************************************************/
 void Set_Pwm(void) {
-  int siqu = 400;
+  int siqu = 300;
   int Amplitude = 6900;  //===PWM满幅是7200 限制在6900
   if (Moto1 < -Amplitude) Moto1 = -Amplitude;
   if (Moto1 > Amplitude) Moto1 = Amplitude;
