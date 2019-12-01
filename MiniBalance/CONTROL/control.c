@@ -35,7 +35,7 @@ int EXTI9_5_IRQHandler(void) {
       report_flag = 1;
     }
   
-    //Led_Flash(200/led_freq);
+    Led_Flash(200/led_freq);
   }
   return 0;
 }
