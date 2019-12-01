@@ -101,6 +101,7 @@ extern s32 SpeedL, SpeedR;
 extern float Velocity_Kp,Velocity_Ki,Velocity_Kd;
 extern int app_1_encL_report, app_2_encR_report, app_3_vol_report, app_4_angle_report;
 extern u8 speed_limit;
+extern float gyro_output[3], accel_output[3], q0, q1, q2, q3;
 
 extern u8 Way_Angle;                                      //获取角度的算法，1：四元数  2：卡尔曼  3：互补滤波
 extern int Encoder_Left,Encoder_Right;                     //左右编码器的脉冲计数

@@ -9,6 +9,7 @@ int Voltage;                      //电池电压采样相关的变量
 u8 Flag_Stop=1, report_flag=0, bluetooth_report=0, scope_report=0, save_flag=0, send_param_flag=0;  //停止标志位和 显示标志位 默认停止 显示打开
 int app_1_encL_report = 0, app_2_encR_report = 0, app_3_vol_report = 0, app_4_angle_report = 0;
 u8 speed_limit = 130;   // 限速0.3m/s，轮子一圈1040个脉冲，轮直径0.238m，控制10Hz，0.3/0.238*1040/10=131
+float gyro_output[3], accel_output[3], q0, q1, q2, q3;
 
 u8 Way_Angle = 1;  //获取角度的算法，1：四元数  2：卡尔曼  3：互补滤波
 u8 Flag_Qian, Flag_Hou, Flag_Left, Flag_Right, Flag_sudu = 1;  //蓝牙遥控相关的变量
@@ -20,6 +21,7 @@ float Show_Data_Mb;  //全局显示变量，用于显示需要查看的数据
 u32 Distance=0;        //超声波测距
 float Acceleration_Z;  // Z轴加速度计
 u16 PID_Parameter[10], Flash_Parameter[10];  // Flash相关数组
+long cntt = 0;
 
 int main(void) {
   delay_init();                //=====延时函数初始化
@@ -46,7 +48,10 @@ int main(void) {
   while (1) {
     if (report_flag) {
       report_flag = 0;
+			
       ReportEncoderBattery();
+      Get_Angle(Way_Angle);
+      USART2_ReportIMU();
 
       if (bluetooth_report) {
         APP_Show();
@@ -55,13 +60,15 @@ int main(void) {
         DataScope();
       }
     }
+
     if (save_flag) {
-        Flash_Write();
-        save_flag = 0;
+			save_flag = 0;
+      Flash_Write();
     }
+
     if (send_param_flag) {
+			send_param_flag = 0;
       printf("{C%d:%d:%d:%d:%d:%d:%d:%d:%d}$", (int)(Velocity_Kp * 1000), (int)(Velocity_Ki * 1000), (int)(Velocity_Kd * 1000), SpeedL*100, SpeedR*100, Voltage, bluetooth_report, 0, 0);
-      send_param_flag = 0;
     }
   }
 }

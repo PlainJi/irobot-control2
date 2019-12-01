@@ -356,7 +356,8 @@
 
 #define MPU6050_WHO_AM_I_BIT        6
 #define MPU6050_WHO_AM_I_LENGTH     6
-extern	short gyro[3], accel[3];
+extern short gyro[3], accel[3];
+extern long quat[4];
 extern int16_t Gx_offset,Gy_offset,Gz_offset;
 extern float Acc1G_Values;
 extern float Pitch,Roll,Yaw;

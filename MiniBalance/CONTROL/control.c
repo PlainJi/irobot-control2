@@ -32,11 +32,10 @@ int EXTI9_5_IRQHandler(void) {
         Set_Pwm();
       }
 
-      //Get_Angle(Way_Angle);
       report_flag = 1;
     }
   
-    Led_Flash(200/led_freq);
+    //Led_Flash(200/led_freq);
   }
   return 0;
 }
@@ -210,13 +209,14 @@ u8 Turn_Off(void) {
 函数功能：获取角度 三种算法经过我们的调校，都非常理想
 入口参数：获取角度的算法 1：DMP  2：卡尔曼 3：互补滤波
 返回  值：无
+运行时间：500us
 **************************************************************************/
 void Get_Angle(u8 way) {
   float Accel_Y, Accel_X, Accel_Z, Gyro_Y, Gyro_Z;
-  Temperature =
-      Read_Temperature();  //===读取MPU6050内置温度传感器数据，近似表示主板温度。
-  if (way == 1)  //===DMP的读取在数据采集中断提醒的时候，严格遵循时序要求
-  {
+  // 读取MPU6050内置温度传感器数据，近似表示主板温度
+  //Temperature = Read_Temperature();
+  if (way == 1) {
+    // DMP的读取在数据采集中断提醒的时候，严格遵循时序要求
     Read_DMP();                 //===读取加速度、角速度、倾角
     Angle_Balance = Pitch;      //===更新平衡倾角
     Gyro_Balance = gyro[1];     //===更新平衡角速度

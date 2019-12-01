@@ -8,13 +8,13 @@
 #define GYRO_ON (0x02)
 #define MOTION (0)
 #define NO_MOTION (1)
-#define DEFAULT_MPU_HZ (200)
+#define DEFAULT_MPU_HZ (21)
 #define FLASH_SIZE (512)
 #define FLASH_MEM_START ((void *)0x1800)
 #define q30 1073741824.0f
 short gyro[3], accel[3], sensors;
+long quat[4];
 float Pitch = 0.0, Roll = 0.0, Yaw = 0.0;
-float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;
 static signed char gyro_orientation[9] = {-1, 0, 0, 0, -1, 0, 0, 0, 1};
 
 static unsigned short inv_row_2_scale(const signed char *row) {
@@ -233,8 +233,8 @@ void MPU6050_setI2CBypassEnabled(uint8_t enabled) {
  *******************************************************************************/
 void MPU6050_initialize(void) {
   MPU6050_setClockSource(MPU6050_CLOCK_PLL_YGYRO);  //设置时钟
-  //陀螺仪最大量程 +-1000度每秒
-  MPU6050_setFullScaleGyroRange(MPU6050_GYRO_FS_2000);
+  //陀螺仪最大量程 +-500度每秒
+  MPU6050_setFullScaleGyroRange(MPU6050_GYRO_FS_500);
   //加速度度最大量程 +-2G
   MPU6050_setFullScaleAccelRange(MPU6050_ACCEL_FS_2);
   //进入工作状态
@@ -276,10 +276,14 @@ void DMP_Init(void) {
       uart1_send("dmp_load_motion_driver_firmware complete ......\r\n");
     if (!dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_orientation)))
       uart1_send("dmp_set_orientation complete ......\r\n");
-    if (!dmp_enable_feature(DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP |
-                            DMP_FEATURE_ANDROID_ORIENT |
+    // if (!dmp_enable_feature(DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP |
+    //                         DMP_FEATURE_ANDROID_ORIENT |
+    //                         DMP_FEATURE_SEND_RAW_ACCEL |
+    //                         DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL))
+    if (!dmp_enable_feature(DMP_FEATURE_6X_LP_QUAT |
                             DMP_FEATURE_SEND_RAW_ACCEL |
-                            DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL))
+                            DMP_FEATURE_SEND_CAL_GYRO | 
+                            DMP_FEATURE_GYRO_CAL))
       uart1_send("dmp_enable_feature complete ......\r\n");
     if (!dmp_set_fifo_rate(DEFAULT_MPU_HZ))
       uart1_send("dmp_set_fifo_rate complete ......\r\n");
@@ -297,20 +301,26 @@ void DMP_Init(void) {
 void Read_DMP(void) {
   unsigned long sensor_timestamp;
   unsigned char more;
-  long quat[4];
 
   dmp_read_fifo(gyro, accel, quat, &sensor_timestamp, &sensors, &more);
+  if (sensors & INV_XYZ_GYRO) {
+    gyro_output[0] = gyro[0] / 65.5 / 180.0 * PI;
+    gyro_output[1] = gyro[1] / 65.5 / 180.0 * PI;
+    gyro_output[2] = gyro[2] / 65.5 / 180.0 * PI;
+  }
+  if (sensors & INV_XYZ_ACCEL) {
+    accel_output[0] = accel[0] / 16384.0 * 9.8;
+    accel_output[1] = accel[1] / 16384.0 * 9.8;
+    accel_output[2] = accel[2] / 16384.0 * 9.8;
+  }
   if (sensors & INV_WXYZ_QUAT) {
     q0 = quat[0] / q30;
     q1 = quat[1] / q30;
     q2 = quat[2] / q30;
     q3 = quat[3] / q30;
     Pitch = asin(-2 * q1 * q3 + 2 * q0 * q2) * 57.3;
-    Roll = atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2 * q2 + 1) *
-           57.3;  // roll
-    Yaw =
-        atan2(2 * (q1 * q2 + q0 * q3), q0 * q0 + q1 * q1 - q2 * q2 - q3 * q3) *
-        57.3;
+    Roll = atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2 * q2 + 1) * 57.3;
+    Yaw =  atan2(2 * (q1 * q2 + q0 * q3), q0 * q0 + q1 * q1 - q2 * q2 - q3 * q3) * 57.3;
   }
 }
 /**************************************************************************
