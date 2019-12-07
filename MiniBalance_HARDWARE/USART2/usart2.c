@@ -1,7 +1,7 @@
 #include "usart2.h"
 
 char uart2_recv_buf[17] = "$+12345,+12345\n";
-char uart2_send_buf[42] = "#+12345,+12345\n";
+char uart2_send_buf[64] = "#+12345,+12345\n";
 
 void uart2_init(u32 bound) {
   // GPIO端口设置
@@ -46,9 +46,11 @@ void uart2_init(u32 bound) {
 // #+00001,+00001\n
 void USART2_ReportEncoder(s16 l, s16 r) {
   u8 cnt = 0;
-  u8 send_cnt = 15;
+  u8 send_cnt = 17;
 
-  sprintf(uart2_send_buf, "E%+06d,%+06d\n", l, r);
+  uart2_send_buf[0] = '~';
+  uart2_send_buf[1] = '>';
+  sprintf(uart2_send_buf+2, "E%+06d,%+06d\n", l, r);
   while (cnt < send_cnt) {
     USART2->DR = uart2_send_buf[cnt++];
     while ((USART2->SR & 0x40) == 0);
@@ -58,9 +60,11 @@ void USART2_ReportEncoder(s16 l, s16 r) {
 // #+01234\n
 void USART2_ReportBattery(int voltage) {
   u8 cnt = 0;
-  u8 send_cnt = 8;
+  u8 send_cnt = 10;
 
-  sprintf(uart2_send_buf, "B%+06d\n", voltage);
+  uart2_send_buf[0] = '~';
+  uart2_send_buf[1] = '>';
+  sprintf(uart2_send_buf+2, "B%+06d\n", voltage);
   while (cnt < send_cnt) {
     USART2->DR = uart2_send_buf[cnt++];
     while ((USART2->SR & 0x40) == 0);
@@ -69,16 +73,18 @@ void USART2_ReportBattery(int voltage) {
 
 void USART2_ReportIMU(void) {
   u8 cnt = 0;
-  u8 send_cnt = 42;
+  u8 send_cnt = 44;
 
-  uart2_send_buf[0] = 'I';
-  memcpy(uart2_send_buf + 1, gyro_output, sizeof(float)*3);
-  memcpy(uart2_send_buf + 1 + sizeof(float)*3, accel_output, sizeof(float)*3);
-  memcpy(uart2_send_buf + 1 + sizeof(float)*(3*2+0), &q0, sizeof(float));
-  memcpy(uart2_send_buf + 1 + sizeof(float)*(3*2+1), &q1, sizeof(float));
-  memcpy(uart2_send_buf + 1 + sizeof(float)*(3*2+2), &q2, sizeof(float));
-  memcpy(uart2_send_buf + 1 + sizeof(float)*(3*2+3), &q3, sizeof(float));
-  uart2_send_buf[41] = '\n';
+  uart2_send_buf[0] = '~';
+  uart2_send_buf[1] = '>';
+  uart2_send_buf[2] = 'I';
+  memcpy(uart2_send_buf + 3, gyro_output, sizeof(float)*3);
+  memcpy(uart2_send_buf + 3 + sizeof(float)*3, accel_output, sizeof(float)*3);
+  memcpy(uart2_send_buf + 3 + sizeof(float)*(3*2+0), &q0, sizeof(float));
+  memcpy(uart2_send_buf + 3 + sizeof(float)*(3*2+1), &q1, sizeof(float));
+  memcpy(uart2_send_buf + 3 + sizeof(float)*(3*2+2), &q2, sizeof(float));
+  memcpy(uart2_send_buf + 3 + sizeof(float)*(3*2+3), &q3, sizeof(float));
+  uart2_send_buf[43] = '\n';
   while (cnt < send_cnt) {
     USART2->DR = uart2_send_buf[cnt++];
     while ((USART2->SR & 0x40) == 0);
