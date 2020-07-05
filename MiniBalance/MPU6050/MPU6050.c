@@ -1,6 +1,7 @@
 #include "MPU6050.h"
 #include "IOI2C.h"
 #include "usart.h"
+
 #define PRINT_ACCEL (0x01)
 #define PRINT_GYRO (0x02)
 #define PRINT_QUAT (0x04)
@@ -16,6 +17,7 @@ short gyro[3], accel[3], sensors;
 long quat[4];
 float Pitch = 0.0, Roll = 0.0, Yaw = 0.0;
 static signed char gyro_orientation[9] = {-1, 0, 0, 0, -1, 0, 0, 0, 1};
+float gyro_output[3], accel_output[3], q0, q1, q2, q3;
 
 static unsigned short inv_row_2_scale(const signed char *row) {
   unsigned short b;
@@ -67,7 +69,7 @@ static void run_self_test(void) {
     accel[1] *= accel_sens;
     accel[2] *= accel_sens;
     dmp_set_accel_bias(accel);
-    //printf("setting bias succesfully ......\r\n");
+    // printf("setting bias succesfully ......\r\n");
   }
 }
 
@@ -245,18 +247,12 @@ void MPU6050_initialize(void) {
   MPU6050_setI2CBypassEnabled(0);
 }
 
-/**************************************************************************
-函数功能：MPU6050内置DMP的初始化
-入口参数：无
-返回  值：无
-作    者：平衡小车之家
-**************************************************************************/
 void DMP_Init(void) {
   u8 temp[1] = {0};
   u8 ret[5] = {0};
   i2cRead(0x68, 0x75, 1, temp);
-  ret[0] = temp[0]/16+'0';
-  ret[1] = temp[0]%16+'0';
+  ret[0] = temp[0] / 16 + '0';
+  ret[1] = temp[0] % 16 + '0';
   ret[2] = '\r';
   ret[3] = '\n';
   ret[4] = 0;
@@ -274,16 +270,17 @@ void DMP_Init(void) {
       uart1_send("mpu_set_sample_rate complete ......\r\n");
     if (!dmp_load_motion_driver_firmware())
       uart1_send("dmp_load_motion_driver_firmware complete ......\r\n");
-    if (!dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_orientation)))
+    if (!dmp_set_orientation(
+            inv_orientation_matrix_to_scalar(gyro_orientation)))
       uart1_send("dmp_set_orientation complete ......\r\n");
     // if (!dmp_enable_feature(DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP |
     //                         DMP_FEATURE_ANDROID_ORIENT |
     //                         DMP_FEATURE_SEND_RAW_ACCEL |
-    //                         DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL))
+    //                         DMP_FEATURE_SEND_CAL_GYRO |
+    //                         DMP_FEATURE_GYRO_CAL))
     if (!dmp_enable_feature(DMP_FEATURE_6X_LP_QUAT |
                             DMP_FEATURE_SEND_RAW_ACCEL |
-                            DMP_FEATURE_SEND_CAL_GYRO | 
-                            DMP_FEATURE_GYRO_CAL))
+                            DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL))
       uart1_send("dmp_enable_feature complete ......\r\n");
     if (!dmp_set_fifo_rate(DEFAULT_MPU_HZ))
       uart1_send("dmp_set_fifo_rate complete ......\r\n");
@@ -292,12 +289,7 @@ void DMP_Init(void) {
       uart1_send("mpu_set_dmp_state complete ......\r\n");
   }
 }
-/**************************************************************************
-函数功能：读取MPU6050内置DMP的姿态信息
-入口参数：无
-返回  值：无
-作    者：平衡小车之家
-**************************************************************************/
+
 void Read_DMP(void) {
   unsigned long sensor_timestamp;
   unsigned char more;
@@ -319,16 +311,14 @@ void Read_DMP(void) {
     q2 = quat[2] / q30;
     q3 = quat[3] / q30;
     Pitch = asin(-2 * q1 * q3 + 2 * q0 * q2) * 57.3;
-    Roll = atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2 * q2 + 1) * 57.3;
-    Yaw =  atan2(2 * (q1 * q2 + q0 * q3), q0 * q0 + q1 * q1 - q2 * q2 - q3 * q3) * 57.3;
+    Roll =
+        atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2 * q2 + 1) * 57.3;
+    Yaw =
+        atan2(2 * (q1 * q2 + q0 * q3), q0 * q0 + q1 * q1 - q2 * q2 - q3 * q3) *
+        57.3;
   }
 }
-/**************************************************************************
-函数功能：读取MPU6050内置温度传感器数据
-入口参数：无
-返回  值：摄氏温度
-作    者：平衡小车之家
-**************************************************************************/
+
 int Read_Temperature(void) {
   float Temp;
   Temp = (I2C_ReadOneByte(devAddr, MPU6050_RA_TEMP_OUT_H) << 8) +
@@ -337,4 +327,7 @@ int Read_Temperature(void) {
   Temp = (36.53 + Temp / 340) * 10;
   return (int)Temp;
 }
-//------------------End of File----------------------------
+
+void Get_Angle(void) {
+  Read_DMP();  // acc gyro Eular
+}

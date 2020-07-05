@@ -147,7 +147,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>1</TargetSelection>
+          <TargetSelection>11</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -161,7 +161,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>BIN\UL2CM3.DLL</Driver>
+            <Driver>STLink\ST-LINKIII-KEIL_SWO.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -170,12 +170,12 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <Capability>1</Capability>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_ HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\MiniBalance_COER;..\STM32F10x_FWLib\inc;..\MiniBalance_HARDWARE;..\SYSTEM;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\MiniBalance_HARDWARE\DMP;..\MiniBalance_HARDWARE\IIC;..\MiniBalance_HARDWARE\MPU6050;..\MiniBalance_HARDWARE\ENCODER;..\MiniBalance_HARDWARE\OLED;..\MiniBalance\show;..\MiniBalance_HARDWARE\LED;..\MiniBalance_HARDWARE\KEY;..\MiniBalance_HARDWARE\ADC;..\MiniBalance_HARDWARE\MOTOR;..\MiniBalance_HARDWARE\TIMER;..\MiniBalance_HARDWARE\USART3;..\MiniBalance_HARDWARE\EXTI;..\MiniBalance_HARDWARE\DataScope_DP;..\MiniBalance\filter;..\MiniBalance_HARDWARE\STMFLASH;..\MiniBalance\CONTROL;..\MiniBalance_HARDWARE\USART2;..\MiniBalance\MPU6050</IncludePath>
+              <IncludePath>..\USER;..\Core;..\STM32F10x_FWLib\inc;..\MiniBalance_HARDWARE;..\SYSTEM;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\MiniBalance_HARDWARE\DMP;..\MiniBalance_HARDWARE\IIC;..\MiniBalance_HARDWARE\MPU6050;..\MiniBalance_HARDWARE\ENCODER;..\MiniBalance_HARDWARE\OLED;..\MiniBalance\show;..\MiniBalance_HARDWARE\LED;..\MiniBalance_HARDWARE\KEY;..\MiniBalance_HARDWARE\ADC;..\MiniBalance_HARDWARE\MOTOR;..\MiniBalance_HARDWARE\TIMER;..\MiniBalance_HARDWARE\USART3;..\MiniBalance_HARDWARE\EXTI;..\MiniBalance\filter;..\MiniBalance_HARDWARE\STMFLASH;..\MiniBalance\CONTROL;..\MiniBalance_HARDWARE\USART2;..\MiniBalance\MPU6050;..\MiniBalance\DataScope_DP</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -431,12 +431,12 @@
             <File>
               <FileName>core_cm3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MiniBalance_COER\core_cm3.c</FilePath>
+              <FilePath>..\Core\core_cm3.c</FilePath>
             </File>
             <File>
               <FileName>startup_stm32f10x_md.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\MiniBalance_COER\startup_stm32f10x_md.s</FilePath>
+              <FilePath>..\Core\startup_stm32f10x_md.s</FilePath>
             </File>
           </Files>
         </Group>
@@ -599,11 +599,6 @@
               <FilePath>..\MiniBalance_HARDWARE\ADC\adc.c</FilePath>
             </File>
             <File>
-              <FileName>timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\TIMER\timer.c</FilePath>
-            </File>
-            <File>
               <FileName>motor.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\MiniBalance_HARDWARE\MOTOR\motor.c</FilePath>
@@ -664,19 +659,14 @@
               <FilePath>..\MiniBalance\show\show.c</FilePath>
             </File>
             <File>
-              <FileName>DataScope_DP.C</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\DataScope_DP\DataScope_DP.C</FilePath>
-            </File>
-            <File>
-              <FileName>filter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance\filter\filter.c</FilePath>
-            </File>
-            <File>
               <FileName>MPU6050.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\MiniBalance\MPU6050\MPU6050.c</FilePath>
+            </File>
+            <File>
+              <FileName>DataScope_DP.C</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MiniBalance\DataScope_DP\DataScope_DP.C</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,10 +1,5 @@
 #include "usart3.h"
 
-/**************************************************************************
-函数功能：串口3初始化
-入口参数： bound:波特率
-返回  值：无
-**************************************************************************/
 void uart3_init(u32 bound) {
   // GPIO端口设置
   GPIO_InitTypeDef GPIO_InitStructure;
@@ -56,17 +51,13 @@ FILE __stdout;
 _sys_exit(int x) { x = x; }
 //重定义fputc函数
 int fputc(int ch, FILE *f) {
-  while ((USART3->SR & 0X40) == 0);
+  while ((USART3->SR & 0X40) == 0)
+    ;
   USART3->DR = (u8)ch;
   return ch;
 }
 #endif
 
-/**************************************************************************
-函数功能：串口3接收中断
-入口参数：无
-返回  值：无
-**************************************************************************/
 void USART3_IRQHandler(void) {
   if (USART_GetITStatus(USART3, USART_IT_RXNE) != RESET) {
     static u8 uart3_buf[57], p_w = 0, flag = 1;
@@ -152,23 +143,23 @@ void USART3_IRQHandler(void) {
           send_param_flag = 1;
         } else if (uart3_buf[1] == '#') {
           // 更新所有参数
-          sscanf((const char*)uart3_buf, "{#%u:%u:%u:%u:%u:%u:%u:%u:%u}",
-                 (u32*)&Flash_Parameter[0], (u32*)&Flash_Parameter[1],
-                 (u32*)&Flash_Parameter[2], (u32*)&Flash_Parameter[3],
-                 (u32*)&Flash_Parameter[4], (u32*)&Flash_Parameter[5],
-                 (u32*)&Flash_Parameter[6], (u32*)&Flash_Parameter[7],
-                 (u32*)&Flash_Parameter[8]);
+          sscanf((const char *)uart3_buf, "{#%u:%u:%u:%u:%u:%u:%u:%u:%u}",
+                 (u32 *)&Flash_Parameter[0], (u32 *)&Flash_Parameter[1],
+                 (u32 *)&Flash_Parameter[2], (u32 *)&Flash_Parameter[3],
+                 (u32 *)&Flash_Parameter[4], (u32 *)&Flash_Parameter[5],
+                 (u32 *)&Flash_Parameter[6], (u32 *)&Flash_Parameter[7],
+                 (u32 *)&Flash_Parameter[8]);
           Velocity_Kp = Flash_Parameter[0] / 1000.0;
           Velocity_Ki = Flash_Parameter[1] / 1000.0;
           Velocity_Kd = Flash_Parameter[2] / 1000.0;
           SpeedL = Flash_Parameter[3] / 100.0;
           SpeedR = Flash_Parameter[4] / 100.0;
-          //Voltage doesn't need to be set.
+          // Voltage doesn't need to be set.
           bluetooth_report = Flash_Parameter[6];
         } else if (uart3_buf[1] >= '0' && uart3_buf[1] <= '8') {
           // 更新特定参数
-          sscanf((const char*)uart3_buf, "{%c:%u}", &temp,
-                 (u32*)&Flash_Parameter[uart3_buf[1] - '0']);
+          sscanf((const char *)uart3_buf, "{%c:%u}", &temp,
+                 (u32 *)&Flash_Parameter[uart3_buf[1] - '0']);
           switch (temp) {
             case '0':
               Velocity_Kp = Flash_Parameter[0] / 1000.0;

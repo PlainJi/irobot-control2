@@ -1,13 +1,10 @@
 #include "stmflash.h"
+
 #include "delay.h"
-//////////////////////////////////////////////////////////////////////////////////
-//********************************************************************************
-// V1.1修改说明
-//修正了STMFLASH_Write函数地址偏移的一个bug.
-//////////////////////////////////////////////////////////////////////////////////
-#define FLASH_SAVE_ADDR \
-  0X0800E000  //设置FLASH
-              //保存地址(必须为偶数，且其值要大于本代码所占用FLASH的大小+0X08000000)
+
+
+u16 PID_Parameter[10], Flash_Parameter[10];  // Flash相关数组
+
 //解锁STM32的FLASH
 void STMFLASH_Unlock(void) {
   FLASH->KEYR = FLASH_KEY1;  //写入解锁序列.
@@ -186,7 +183,7 @@ void Flash_Read(void) {
       PID_Parameter[4] == 65535 && PID_Parameter[5] == 65535) {
     Velocity_Kp = 15;
     Velocity_Ki = 12;
-	  Velocity_Kd = 0;
+    Velocity_Kd = 0;
     SpeedL = 50;
     SpeedR = 50;
     Voltage = 0;

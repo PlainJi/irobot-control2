@@ -1,19 +1,17 @@
 #include "show.h"
 
+int app_1_encL_report = 0, app_2_encR_report = 0, app_3_vol_report = 0,
+    app_4_angle_report = 0;
+
 void APP_Show(void) {
-  //static u8 flag;
-  //flag = !flag;
   app_3_vol_report = (Voltage - 1110) * 2 / 3;
   if (app_3_vol_report < 0) app_3_vol_report = 0;
   if (app_3_vol_report > 100) app_3_vol_report = 100;
 
-  //if (flag == 0)
-  printf("{A%d:%d:%d:%d}$", (u8)app_1_encL_report, (u8)app_2_encR_report, app_3_vol_report, app_4_angle_report);	// APPÊ×Ò³
-  //else
-  //  printf("{B%d:%d:%d:%d}$", (int)Angle_Balance, Distance, Encoder_Left, Encoder_Right);							// APP²¨ÐÎ
+  printf("{A%d:%d:%d:%d}$", (u8)app_1_encL_report, (u8)app_2_encR_report,
+         app_3_vol_report, app_4_angle_report);
 }
 
-//?????1.2ms
 void DataScope(void) {
   char SendCount = 0, i = 0;
   // DataScope_Get_Channel_Data(DesireL, 1);
@@ -39,7 +37,7 @@ void DataScope(void) {
   DataScope_Get_Channel_Data(q3, 10);
 
   SendCount = DataScope_Data_Generate(9);
-   for (i = 0; i < SendCount; i++) {
+  for (i = 0; i < SendCount; i++) {
     while ((USART1->SR & 0X40) == 0);
     USART1->DR = DataScope_OutPut_Buffer[i];
   }

@@ -1,9 +1,7 @@
 #include "usart.h"
+
 #include "sys.h"
-/**************************************************************************
-作者：平衡小车之家
-我的淘宝小店：http://shop114407458.taobao.com/
-**************************************************************************/
+
 #if SYSTEM_SUPPORT_OS
 #include "includes.h"  //ucos 使用
 #endif
@@ -13,7 +11,8 @@ void uart1_send(u8 *buf) {
   u8 *temp = buf;
   while (*temp) {
     USART1->DR = *temp;
-    while ((USART1->SR & 0x40) == 0);
+    while ((USART1->SR & 0x40) == 0)
+      ;
     temp++;
   }
 }
@@ -50,5 +49,4 @@ void uart_init(u32 bound) {
   USART_Init(USART1, &USART_InitStructure);        //初始化串口1
   USART_ITConfig(USART1, USART_IT_RXNE, DISABLE);  //开启串口接受中断
   USART_Cmd(USART1, ENABLE);                       //使能串口1
-  
 }
