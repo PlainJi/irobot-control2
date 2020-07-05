@@ -26,3 +26,6 @@ Acc  Range +-2   g/s
 Frequency  
 21 Hz  
 `#define DEFAULT_MPU_HZ (21)`  
+
+## Control Param
+Config Control Param in control.h  

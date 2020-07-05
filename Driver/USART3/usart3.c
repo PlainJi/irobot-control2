@@ -1,5 +1,8 @@
 #include "usart3.h"
 
+u8 Flag_Stop = 1;
+u8 save_flag = 0, send_param_flag = 0;
+
 void uart3_init(u32 bound) {
   // GPIO¶Ë¿ÚÉèÖÃ
   GPIO_InitTypeDef GPIO_InitStructure;
@@ -67,18 +70,18 @@ void USART3_IRQHandler(void) {
     if (flag && uart_receive >= 'A' && uart_receive <= 'Z') {
       switch (uart_receive) {
         case 'A':
-          DesireL = SpeedL;
-          DesireR = SpeedR;
+          DesireL = SetSpeedL;
+          DesireR = SetSpeedR;
           Flag_Stop = 0;
           break;
         case 'B':
-          DesireL = SpeedL;
+          DesireL = SetSpeedL;
           DesireR = 0;
           Flag_Stop = 0;
           break;
         case 'C':
-          DesireL = SpeedL;
-          DesireR = -SpeedR;
+          DesireL =  SetSpeedL;
+          DesireR = -SetSpeedR;
           Flag_Stop = 0;
           break;
         case 'D':
@@ -97,23 +100,23 @@ void USART3_IRQHandler(void) {
           Flag_Stop = 1;
           break;
         case 'G':
-          DesireL = -SpeedL;
-          DesireR = SpeedR;
+          DesireL = -SetSpeedL;
+          DesireR =  SetSpeedR;
           Flag_Stop = 0;
           break;
         case 'H':
           DesireL = 0;
-          DesireR = SpeedR;
+          DesireR = SetSpeedR;
           Flag_Stop = 0;
           break;
         case 'X':
-          SpeedL += 10;
-          SpeedR += 10;
+          SetSpeedL += 10;
+          SetSpeedR += 10;
           Flag_Stop = 1;
           break;
         case 'Y':
-          SpeedL -= 10;
-          SpeedR -= 10;
+          SetSpeedL -= 10;
+          SetSpeedR -= 10;
           Flag_Stop = 1;
           break;
         case 'Z':
@@ -152,8 +155,8 @@ void USART3_IRQHandler(void) {
           Velocity_Kp = Flash_Parameter[0] / 1000.0;
           Velocity_Ki = Flash_Parameter[1] / 1000.0;
           Velocity_Kd = Flash_Parameter[2] / 1000.0;
-          SpeedL = Flash_Parameter[3] / 100.0;
-          SpeedR = Flash_Parameter[4] / 100.0;
+          SetSpeedL = Flash_Parameter[3] / 100.0;
+          SetSpeedR = Flash_Parameter[4] / 100.0;
           // Voltage doesn't need to be set.
           bluetooth_report = Flash_Parameter[6];
         } else if (uart3_buf[1] >= '0' && uart3_buf[1] <= '8') {
@@ -171,10 +174,10 @@ void USART3_IRQHandler(void) {
               Velocity_Kd = Flash_Parameter[2] / 1000.0;
               break;
             case '3':
-              SpeedL = Flash_Parameter[3] / 100.0;
+              SetSpeedL = Flash_Parameter[3] / 100.0;
               break;
             case '4':
-              SpeedR = Flash_Parameter[4] / 100.0;
+              SetSpeedR = Flash_Parameter[4] / 100.0;
               break;
             case '6':
               bluetooth_report = Flash_Parameter[6];

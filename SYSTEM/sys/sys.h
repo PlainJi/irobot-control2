@@ -22,7 +22,6 @@
 #include "mpu6050.h"
 #include "show.h"					
 #include "exti.h"
-#include "DataScope_DP.h"
 #include "stmflash.h"  
 #include "control.h"
 #include "inv_mpu.h"
@@ -86,20 +85,7 @@
 #define SWD_ENABLE         0X01
 #define JTAG_SWD_ENABLE    0X00
 
-extern u16 led_freq;
-extern int Voltage;
-extern int Temperature;
-
-extern int Encoder_Left,Encoder_Right;
-extern int Moto1,Moto2;
-
-extern s32 DesireL, DesireR;
-extern s32 SpeedL, SpeedR;
-extern float Velocity_Kp,Velocity_Ki,Velocity_Kd;
-extern u8 speed_limit;
-
-extern u8 Flag_Qian,Flag_Hou,Flag_Left,Flag_Right,Flag_sudu;
-extern u8 Flag_Stop,report_flag, bluetooth_report, save_flag, send_param_flag;
+extern u8 bluetooth_report;
 
 void Stm32_Clock_Init(u8 PLL);
 void Sys_Soft_Reset(void);

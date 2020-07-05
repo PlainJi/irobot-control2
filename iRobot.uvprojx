@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>MiniBalance</TargetName>
+      <TargetName>iRobot</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>
@@ -20,7 +20,7 @@
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
           <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_128 -FS08000000 -FL020000 -FP0($$Device:STM32F103C8$Flash/STM32F10x_128.FLM))</FlashDriverDll>
-          <DeviceId>4235</DeviceId>
+          <DeviceId>0</DeviceId>
           <RegisterFile>$$Device:STM32F103C8$Device/Include/stm32f10x.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
@@ -46,8 +46,8 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>..\OBJ\</OutputDirectory>
-          <OutputName>MiniBalance</OutputName>
+          <OutputDirectory>.\Obj\</OutputDirectory>
+          <OutputName>iRobot</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -350,7 +350,7 @@
             <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
-            <OneElfS>0</OneElfS>
+            <OneElfS>1</OneElfS>
             <Strict>0</Strict>
             <EnumInt>0</EnumInt>
             <PlainCh>0</PlainCh>
@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_ HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\Core;..\STM32F10x_FWLib\inc;..\MiniBalance_HARDWARE;..\SYSTEM;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\MiniBalance_HARDWARE\DMP;..\MiniBalance_HARDWARE\IIC;..\MiniBalance_HARDWARE\MPU6050;..\MiniBalance_HARDWARE\ENCODER;..\MiniBalance_HARDWARE\OLED;..\MiniBalance\show;..\MiniBalance_HARDWARE\LED;..\MiniBalance_HARDWARE\KEY;..\MiniBalance_HARDWARE\ADC;..\MiniBalance_HARDWARE\MOTOR;..\MiniBalance_HARDWARE\TIMER;..\MiniBalance_HARDWARE\USART3;..\MiniBalance_HARDWARE\EXTI;..\MiniBalance\filter;..\MiniBalance_HARDWARE\STMFLASH;..\MiniBalance\CONTROL;..\MiniBalance_HARDWARE\USART2;..\MiniBalance\MPU6050;..\MiniBalance\DataScope_DP</IncludePath>
+              <IncludePath>.\Lib\inc;.\User;.\Control;.\Core;.\Driver\ADC;.\Driver\DMP;.\Driver\ENCODER;.\Driver\EXTI;.\Driver\IIC;.\Driver\KEY;.\Driver\LED;.\Driver\MOTOR;.\Driver\MPU6050;.\Driver\OLED;.\Driver\STMFLASH;.\Driver\USART2;.\Driver\USART3;.\System\delay;.\System\sys;.\System\usart</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -406,267 +406,267 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>USER</GroupName>
+          <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>stm32f10x_it.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\stm32f10x_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>system_stm32f10x.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\system_stm32f10x.c</FilePath>
-            </File>
-            <File>
-              <FileName>MiniBalance.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MiniBalance.c</FilePath>
+              <FilePath>.\User\main.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>CORE</GroupName>
-          <Files>
-            <File>
-              <FileName>core_cm3.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\core_cm3.c</FilePath>
-            </File>
-            <File>
-              <FileName>startup_stm32f10x_md.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\Core\startup_stm32f10x_md.s</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FWLIB</GroupName>
-          <Files>
-            <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\misc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_bkp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_bkp.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_can.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_cec.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_cec.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_dbgmcu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_dbgmcu.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_exti.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_exti.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_fsmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_fsmc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_iwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_iwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_pwr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_pwr.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_rcc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_rcc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_rtc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_rtc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_sdio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_sdio.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_wwdg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_wwdg.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>SYSTEM</GroupName>
-          <Files>
-            <File>
-              <FileName>delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\SYSTEM\delay\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>sys.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\SYSTEM\sys\sys.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\SYSTEM\usart\usart.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>HAREWARE</GroupName>
-          <Files>
-            <File>
-              <FileName>LED.C</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\LED\LED.C</FilePath>
-            </File>
-            <File>
-              <FileName>key.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\KEY\key.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\ADC\adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>motor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\MOTOR\motor.c</FilePath>
-            </File>
-            <File>
-              <FileName>encoder.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\ENCODER\encoder.c</FilePath>
-            </File>
-            <File>
-              <FileName>IOI2C.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\IIC\IOI2C.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart3.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\USART3\usart3.c</FilePath>
-            </File>
-            <File>
-              <FileName>exti.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\EXTI\exti.c</FilePath>
-            </File>
-            <File>
-              <FileName>stmflash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\STMFLASH\stmflash.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance_HARDWARE\USART2\usart2.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>MiniBalance</GroupName>
+          <GroupName>Control</GroupName>
           <Files>
             <File>
               <FileName>control.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MiniBalance\CONTROL\control.c</FilePath>
-            </File>
-            <File>
-              <FileName>inv_mpu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance\DMP\inv_mpu.c</FilePath>
-            </File>
-            <File>
-              <FileName>inv_mpu_dmp_motion_driver.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MiniBalance\DMP\inv_mpu_dmp_motion_driver.c</FilePath>
+              <FilePath>.\Control\control.c</FilePath>
             </File>
             <File>
               <FileName>show.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MiniBalance\show\show.c</FilePath>
+              <FilePath>.\Control\show.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Driver</GroupName>
+          <Files>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\ADC\adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>inv_mpu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\DMP\inv_mpu.c</FilePath>
+            </File>
+            <File>
+              <FileName>inv_mpu_dmp_motion_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\DMP\inv_mpu_dmp_motion_driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\ENCODER\encoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\EXTI\exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>IOI2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\IIC\IOI2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\KEY\key.c</FilePath>
+            </File>
+            <File>
+              <FileName>LED.C</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\LED\LED.C</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\MOTOR\motor.c</FilePath>
             </File>
             <File>
               <FileName>MPU6050.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MiniBalance\MPU6050\MPU6050.c</FilePath>
+              <FilePath>.\Driver\MPU6050\MPU6050.c</FilePath>
             </File>
             <File>
-              <FileName>DataScope_DP.C</FileName>
+              <FileName>oled.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\MiniBalance\DataScope_DP\DataScope_DP.C</FilePath>
+              <FilePath>.\Driver\OLED\oled.c</FilePath>
+            </File>
+            <File>
+              <FileName>stmflash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\STMFLASH\stmflash.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\USART2\usart2.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Driver\USART3\usart3.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>System</GroupName>
+          <Files>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\System\delay\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>sys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\System\sys\sys.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\System\usart\usart.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Lib</GroupName>
+          <Files>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_bkp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_bkp.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_can.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_cec.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_cec.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dbgmcu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_dbgmcu.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_fsmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_fsmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_iwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_iwdg.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_pwr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_pwr.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_wwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_wwdg.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Core</GroupName>
+          <Files>
+            <File>
+              <FileName>core_cm3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\core_cm3.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\stm32f10x_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32f10x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\system_stm32f10x.c</FilePath>
+            </File>
+            <File>
+              <FileName>startup_stm32f10x_md.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Core\startup_stm32f10x_md.s</FilePath>
             </File>
           </Files>
         </Group>

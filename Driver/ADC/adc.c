@@ -1,7 +1,9 @@
 #include "adc.h"
 
+s32 Voltage;
+
 void Adc_Init(void) {
-  ADC_InitTypeDef ADC_InitStructure;
+	ADC_InitTypeDef ADC_InitStructure;
   GPIO_InitTypeDef GPIO_InitStructure;
   //使能ADC1通道时钟
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_ADC1, ENABLE);

@@ -153,7 +153,7 @@ void STMFLASH_Write(u32 WriteAddr, u16 *pBuffer, u16 NumToWrite) {
       else
         secremain = NumToWrite;  //下一个扇区可以写完了
     }
-  };
+  }
   STMFLASH_Lock();  //上锁
 }
 #endif
@@ -181,19 +181,19 @@ void Flash_Read(void) {
   if (PID_Parameter[0] == 65535 && PID_Parameter[1] == 65535 &&
       PID_Parameter[2] == 65535 && PID_Parameter[3] == 65535 &&
       PID_Parameter[4] == 65535 && PID_Parameter[5] == 65535) {
-    Velocity_Kp = 15;
-    Velocity_Ki = 12;
-    Velocity_Kd = 0;
-    SpeedL = 50;
-    SpeedR = 50;
+    Velocity_Kp = DEFAULT_KP;
+    Velocity_Ki = DEFAULT_KI;
+    Velocity_Kd = DEFAULT_KD;
+    SetSpeedL = DEFAULT_VEL;
+    SetSpeedR = DEFAULT_VEL;
     Voltage = 0;
     bluetooth_report = 0;
   } else {
     Velocity_Kp = PID_Parameter[0] / 1000.0;
     Velocity_Ki = PID_Parameter[1] / 1000.0;
     Velocity_Kd = PID_Parameter[2] / 1000.0;
-    SpeedL = PID_Parameter[3] / 100.0;
-    SpeedR = PID_Parameter[4] / 100.0;
+    SetSpeedL = PID_Parameter[3] / 100.0;
+    SetSpeedR = PID_Parameter[4] / 100.0;
     Voltage = PID_Parameter[5];
     bluetooth_report = PID_Parameter[6];
   }
@@ -203,8 +203,8 @@ void Flash_Write(void) {
   Flash_Parameter[0] = Velocity_Kp * 1000;
   Flash_Parameter[1] = Velocity_Ki * 1000;
   Flash_Parameter[2] = Velocity_Kd * 1000;
-  Flash_Parameter[3] = SpeedL * 100;
-  Flash_Parameter[4] = SpeedR * 100;
+  Flash_Parameter[3] = SetSpeedL * 100;
+  Flash_Parameter[4] = SetSpeedR * 100;
   Flash_Parameter[5] = Voltage;
   Flash_Parameter[6] = bluetooth_report;
   STMFLASH_Write(FLASH_SAVE_ADDR, (u16 *)Flash_Parameter, 10);

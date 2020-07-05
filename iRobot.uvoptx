@@ -22,7 +22,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>MiniBalance</TargetName>
+    <TargetName>iRobot</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -144,12 +144,12 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>ST-LINKIII-KEIL_SWO</Key>
-          <Name>-U-O14 -I0 -O78 -S1 -C0 -A0 -TO18 -TC10000000 -TP21 -TDS8004 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO31 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_128.FLM -FS08000000 -FL020000 -FP0($$Device:STM32F103C8$Flash/STM32F10x_128.FLM)</Name>
+          <Name>-U -I0 -O206 -S1 -C0 -A0 -TO18 -TC10000000 -TP21 -TDS8004 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO31 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_128.FLM -FS08000000 -FL020000 -FP0($$Device:STM32F103C8$Flash/STM32F10x_128.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>UL2CM3</Key>
-          <Name>-U -O14 -S0 -C0 -P00 -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO31 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_128.FLM -FS08000000 -FL020000 -FP0($$Device:STM32F103C8$Flash/STM32F10x_128.FLM)</Name>
+          <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_128 -FS08000000 -FL020000 -FP0($$Device:STM32F103C8$Flash/STM32F10x_128.FLM))</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
       <Breakpoint/>
@@ -185,16 +185,16 @@
       <LintExecutable></LintExecutable>
       <LintConfigFile></LintConfigFile>
       <DebugDescription>
-        <Enable>0</Enable>
+        <Enable>1</Enable>
         <EnableLog>0</EnableLog>
-        <Protocol>1</Protocol>
-        <DbgClock>1000000</DbgClock>
+        <Protocol>2</Protocol>
+        <DbgClock>10000000</DbgClock>
       </DebugDescription>
     </TargetOption>
   </Target>
 
   <Group>
-    <GroupName>USER</GroupName>
+    <GroupName>User</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -207,79 +207,79 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\stm32f10x_it.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_it.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>2</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\system_stm32f10x.c</PathWithFileName>
-      <FilenameWithoutPath>system_stm32f10x.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
-      <FileNumber>3</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\MiniBalance.c</PathWithFileName>
-      <FilenameWithoutPath>MiniBalance.c</FilenameWithoutPath>
+      <PathWithFileName>.\User\main.c</PathWithFileName>
+      <FilenameWithoutPath>main.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
   </Group>
 
   <Group>
-    <GroupName>CORE</GroupName>
+    <GroupName>Control</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>2</GroupNumber>
-      <FileNumber>4</FileNumber>
+      <FileNumber>2</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Core\core_cm3.c</PathWithFileName>
-      <FilenameWithoutPath>core_cm3.c</FilenameWithoutPath>
+      <PathWithFileName>.\Control\control.c</PathWithFileName>
+      <FilenameWithoutPath>control.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>2</GroupNumber>
-      <FileNumber>5</FileNumber>
-      <FileType>2</FileType>
+      <FileNumber>3</FileNumber>
+      <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Core\startup_stm32f10x_md.s</PathWithFileName>
-      <FilenameWithoutPath>startup_stm32f10x_md.s</FilenameWithoutPath>
+      <PathWithFileName>.\Control\show.c</PathWithFileName>
+      <FilenameWithoutPath>show.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
   </Group>
 
   <Group>
-    <GroupName>FWLIB</GroupName>
+    <GroupName>Driver</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>4</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Driver\ADC\adc.c</PathWithFileName>
+      <FilenameWithoutPath>adc.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>5</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Driver\DMP\inv_mpu.c</PathWithFileName>
+      <FilenameWithoutPath>inv_mpu.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
     <File>
       <GroupNumber>3</GroupNumber>
       <FileNumber>6</FileNumber>
@@ -288,8 +288,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\misc.c</PathWithFileName>
-      <FilenameWithoutPath>misc.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\DMP\inv_mpu_dmp_motion_driver.c</PathWithFileName>
+      <FilenameWithoutPath>inv_mpu_dmp_motion_driver.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -301,8 +301,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_adc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_adc.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\ENCODER\encoder.c</PathWithFileName>
+      <FilenameWithoutPath>encoder.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -314,8 +314,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_bkp.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_bkp.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\EXTI\exti.c</PathWithFileName>
+      <FilenameWithoutPath>exti.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -327,8 +327,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_can.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_can.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\IIC\IOI2C.c</PathWithFileName>
+      <FilenameWithoutPath>IOI2C.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -340,8 +340,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_cec.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_cec.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\KEY\key.c</PathWithFileName>
+      <FilenameWithoutPath>key.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -353,8 +353,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_crc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_crc.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\LED\LED.C</PathWithFileName>
+      <FilenameWithoutPath>LED.C</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -366,8 +366,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_dac.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_dac.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\MOTOR\motor.c</PathWithFileName>
+      <FilenameWithoutPath>motor.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -379,8 +379,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_dbgmcu.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_dbgmcu.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\MPU6050\MPU6050.c</PathWithFileName>
+      <FilenameWithoutPath>MPU6050.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -392,8 +392,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_dma.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_dma.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\OLED\oled.c</PathWithFileName>
+      <FilenameWithoutPath>oled.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -405,8 +405,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_exti.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_exti.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\STMFLASH\stmflash.c</PathWithFileName>
+      <FilenameWithoutPath>stmflash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -418,8 +418,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_flash.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_flash.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\USART2\usart2.c</PathWithFileName>
+      <FilenameWithoutPath>usart2.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -431,197 +431,54 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_fsmc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_fsmc.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>18</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_gpio.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_gpio.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>19</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_i2c.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_i2c.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>20</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_iwdg.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_iwdg.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>21</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_pwr.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_pwr.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>22</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_rcc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_rcc.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>23</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_rtc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_rtc.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>24</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_sdio.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_sdio.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>25</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_spi.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_spi.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>26</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_tim.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_tim.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>27</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_usart.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_usart.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>28</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\STM32F10x_FWLib\src\stm32f10x_wwdg.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f10x_wwdg.c</FilenameWithoutPath>
+      <PathWithFileName>.\Driver\USART3\usart3.c</PathWithFileName>
+      <FilenameWithoutPath>usart3.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
   </Group>
 
   <Group>
-    <GroupName>SYSTEM</GroupName>
-    <tvExp>1</tvExp>
+    <GroupName>System</GroupName>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>29</FileNumber>
+      <FileNumber>18</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\SYSTEM\delay\delay.c</PathWithFileName>
+      <PathWithFileName>.\System\delay\delay.c</PathWithFileName>
       <FilenameWithoutPath>delay.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>30</FileNumber>
+      <FileNumber>19</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\SYSTEM\sys\sys.c</PathWithFileName>
+      <PathWithFileName>.\System\sys\sys.c</PathWithFileName>
       <FilenameWithoutPath>sys.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>31</FileNumber>
+      <FileNumber>20</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\SYSTEM\usart\usart.c</PathWithFileName>
+      <PathWithFileName>.\System\usart\usart.c</PathWithFileName>
       <FilenameWithoutPath>usart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -629,11 +486,154 @@
   </Group>
 
   <Group>
-    <GroupName>HAREWARE</GroupName>
-    <tvExp>1</tvExp>
+    <GroupName>Lib</GroupName>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>21</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Lib\src\misc.c</PathWithFileName>
+      <FilenameWithoutPath>misc.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>22</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Lib\src\stm32f10x_adc.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_adc.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>23</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Lib\src\stm32f10x_bkp.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_bkp.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>24</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Lib\src\stm32f10x_can.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_can.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>25</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Lib\src\stm32f10x_cec.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_cec.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>26</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Lib\src\stm32f10x_crc.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_crc.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>27</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Lib\src\stm32f10x_dac.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_dac.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>28</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Lib\src\stm32f10x_dbgmcu.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_dbgmcu.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>29</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Lib\src\stm32f10x_dma.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_dma.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>30</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Lib\src\stm32f10x_exti.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_exti.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>31</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\Lib\src\stm32f10x_flash.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_flash.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
     <File>
       <GroupNumber>5</GroupNumber>
       <FileNumber>32</FileNumber>
@@ -642,8 +642,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance_HARDWARE\LED\LED.C</PathWithFileName>
-      <FilenameWithoutPath>LED.C</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_fsmc.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_fsmc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -655,8 +655,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance_HARDWARE\KEY\key.c</PathWithFileName>
-      <FilenameWithoutPath>key.c</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_gpio.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -668,8 +668,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance_HARDWARE\ADC\adc.c</PathWithFileName>
-      <FilenameWithoutPath>adc.c</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_i2c.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_i2c.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -681,8 +681,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance_HARDWARE\MOTOR\motor.c</PathWithFileName>
-      <FilenameWithoutPath>motor.c</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_iwdg.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_iwdg.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -694,8 +694,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance_HARDWARE\ENCODER\encoder.c</PathWithFileName>
-      <FilenameWithoutPath>encoder.c</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_pwr.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_pwr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -707,8 +707,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance_HARDWARE\IIC\IOI2C.c</PathWithFileName>
-      <FilenameWithoutPath>IOI2C.c</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_rcc.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_rcc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -720,8 +720,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance_HARDWARE\USART3\usart3.c</PathWithFileName>
-      <FilenameWithoutPath>usart3.c</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_rtc.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_rtc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -733,8 +733,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance_HARDWARE\EXTI\exti.c</PathWithFileName>
-      <FilenameWithoutPath>exti.c</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_sdio.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_sdio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -746,8 +746,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance_HARDWARE\STMFLASH\stmflash.c</PathWithFileName>
-      <FilenameWithoutPath>stmflash.c</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_spi.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_spi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -759,45 +759,45 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance_HARDWARE\USART2\usart2.c</PathWithFileName>
-      <FilenameWithoutPath>usart2.c</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_tim.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_tim.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
-  </Group>
-
-  <Group>
-    <GroupName>MiniBalance</GroupName>
-    <tvExp>1</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>5</GroupNumber>
       <FileNumber>42</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance\CONTROL\control.c</PathWithFileName>
-      <FilenameWithoutPath>control.c</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_usart.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_usart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>5</GroupNumber>
       <FileNumber>43</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance\DMP\inv_mpu.c</PathWithFileName>
-      <FilenameWithoutPath>inv_mpu.c</FilenameWithoutPath>
+      <PathWithFileName>.\Lib\src\stm32f10x_wwdg.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_wwdg.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
+  </Group>
+
+  <Group>
+    <GroupName>Core</GroupName>
+    <tvExp>0</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>6</GroupNumber>
       <FileNumber>44</FileNumber>
@@ -806,8 +806,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance\DMP\inv_mpu_dmp_motion_driver.c</PathWithFileName>
-      <FilenameWithoutPath>inv_mpu_dmp_motion_driver.c</FilenameWithoutPath>
+      <PathWithFileName>.\Core\core_cm3.c</PathWithFileName>
+      <FilenameWithoutPath>core_cm3.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -819,8 +819,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance\show\show.c</PathWithFileName>
-      <FilenameWithoutPath>show.c</FilenameWithoutPath>
+      <PathWithFileName>.\Core\stm32f10x_it.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_it.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -832,21 +832,21 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance\MPU6050\MPU6050.c</PathWithFileName>
-      <FilenameWithoutPath>MPU6050.c</FilenameWithoutPath>
+      <PathWithFileName>.\Core\system_stm32f10x.c</PathWithFileName>
+      <FilenameWithoutPath>system_stm32f10x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>6</GroupNumber>
       <FileNumber>47</FileNumber>
-      <FileType>1</FileType>
+      <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\MiniBalance\DataScope_DP\DataScope_DP.C</PathWithFileName>
-      <FilenameWithoutPath>DataScope_DP.C</FilenameWithoutPath>
+      <PathWithFileName>.\Core\startup_stm32f10x_md.s</PathWithFileName>
+      <FilenameWithoutPath>startup_stm32f10x_md.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

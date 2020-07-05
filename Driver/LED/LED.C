@@ -1,5 +1,7 @@
 #include "led.h"
 
+u16 led_freq = 1;  //主板LED灯闪烁频率
+
 void LED_Init(void) {
   GPIO_InitTypeDef GPIO_InitStructure;
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);  //使能端口时钟
