@@ -52,7 +52,7 @@ void ReportToDataScope(void) {
   DataScope_Get_Channel_Data(Encoder_Right, 5);
   DataScope_Get_Channel_Data(Moto2, 6);
   DataScope_Get_Channel_Data(SPEED_LIMIT_BY_ENCODER, 7);
-  DataScope_Get_Channel_Data(pulse_cnt, 8);
+  DataScope_Get_Channel_Data(0, 8);
   DataScope_Get_Channel_Data(0, 9);
   DataScope_Get_Channel_Data(0, 10);
 

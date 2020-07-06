@@ -11,7 +11,6 @@ int Encoder_Left_Once = 0, Encoder_Right_Once = 0;    //每5ms的编码器计数
 s32 Encoder_Left = 0, Encoder_Right = 0;              //控制周期内的编码器计数
 s32 Moto1, Moto2;                                     //电机PWM输出参数
 float Velocity_Kp = 1.453, Velocity_Ki = 0.58, Velocity_Kd = 0;
-s32 pulse_cnt = 0;
 
 /**************************************************************************
 函数功能：所有的控制代码都在这里面
@@ -19,15 +18,12 @@ s32 pulse_cnt = 0;
          严格保证采样和数据处理的时间同步
 **************************************************************************/
 int EXTI9_5_IRQHandler(void) {
-  int temp = 0;
   if (PBin(5) == 0) {
     EXTI->PR = 1 << 5;  //清除LINE5上的中断标志位
 
     control_cnt++;
-    temp = Read_Encoder(2);
-    Encoder_Left_Once += temp;
-    Encoder_Right_Once += -Read_Encoder(4);
-    pulse_cnt += temp;
+    Encoder_Left_Once += -Read_Encoder(2);
+    Encoder_Right_Once += Read_Encoder(4);
 
     if (control_cnt == 200 / CONTROL_FREQ) {
       Encoder_Left = Encoder_Left_Once;
@@ -146,15 +142,15 @@ void Set_Pwm(void) {
   if (Moto2 > Amplitude) Moto2 = Amplitude;
 
   if (Moto1 < 0)
-    AIN1 = 0, AIN2 = 1;
-  else
     AIN1 = 1, AIN2 = 0;
+  else
+    AIN1 = 0, AIN2 = 1;
   PWMA = abs(Moto1) + siqu;
 
   if (Moto2 < 0)
-    BIN1 = 0, BIN2 = 1;
-  else
     BIN1 = 1, BIN2 = 0;
+  else
+    BIN1 = 0, BIN2 = 1;
   PWMB = abs(Moto2) + siqu;
 }
 
