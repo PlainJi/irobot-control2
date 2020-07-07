@@ -49,8 +49,8 @@ int main(void) {
     if (send_param_flag) {
       send_param_flag = 0;
       printf("{C%d:%d:%d:%d:%d:%d:%d:%d:%d}$", (int)(Velocity_Kp * 1000),
-             (int)(Velocity_Ki * 1000), (int)(Velocity_Kd * 1000), SetSpeedL * 100,
-             SetSpeedR * 100, Voltage, bluetooth_report, 0, 0);
+             (int)(Velocity_Ki * 1000), (int)(Velocity_Kd * 1000), SetSpeedL,
+             SetSpeedR, Voltage, bluetooth_report, 0, 0);
     }
   }
 }

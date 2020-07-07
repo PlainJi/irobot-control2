@@ -11,7 +11,7 @@
 #define DEFAULT_KP      (1.453)
 #define DEFAULT_KI      (0.58)
 #define DEFAULT_KD      (0)
-#define DEFAULT_VEL     (100)    //默认蓝牙遥控时的行驶速度
+#define DEFAULT_VEL     (500)       //默认蓝牙遥控时的行驶速度
 
 extern u8 report_flag;
 

@@ -192,8 +192,8 @@ void Flash_Read(void) {
     Velocity_Kp = PID_Parameter[0] / 1000.0;
     Velocity_Ki = PID_Parameter[1] / 1000.0;
     Velocity_Kd = PID_Parameter[2] / 1000.0;
-    SetSpeedL = PID_Parameter[3] / 100.0;
-    SetSpeedR = PID_Parameter[4] / 100.0;
+    SetSpeedL = PID_Parameter[3];
+    SetSpeedR = PID_Parameter[4];
     Voltage = PID_Parameter[5];
     bluetooth_report = PID_Parameter[6];
   }
@@ -203,8 +203,8 @@ void Flash_Write(void) {
   Flash_Parameter[0] = Velocity_Kp * 1000;
   Flash_Parameter[1] = Velocity_Ki * 1000;
   Flash_Parameter[2] = Velocity_Kd * 1000;
-  Flash_Parameter[3] = SetSpeedL * 100;
-  Flash_Parameter[4] = SetSpeedR * 100;
+  Flash_Parameter[3] = SetSpeedL;
+  Flash_Parameter[4] = SetSpeedR;
   Flash_Parameter[5] = Voltage;
   Flash_Parameter[6] = bluetooth_report;
   STMFLASH_Write(FLASH_SAVE_ADDR, (u16 *)Flash_Parameter, 10);

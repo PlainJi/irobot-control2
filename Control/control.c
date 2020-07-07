@@ -5,7 +5,7 @@
 u8 report_flag = 0;
 u8 control_cnt = 0;
 
-s32 SetSpeedL = 50, SetSpeedR = 50;                   //通过蓝牙设置速度
+s32 SetSpeedL = 500, SetSpeedR = 500;                 //通过蓝牙设置速度
 s32 DesireL = 0, DesireR = 0;                         //上位机通过UART2下发的期望速度
 int Encoder_Left_Once = 0, Encoder_Right_Once = 0;    //每5ms的编码器计数
 s32 Encoder_Left = 0, Encoder_Right = 0;              //控制周期内的编码器计数
